@@ -2,7 +2,8 @@ import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { legacy_createStore as createStore } from 'redux';
 import reducer from './modules';
-import { increase, decrease } from './modules/counter';
+
+import { Provider } from 'react-redux';
 
 import App from './App';
 
@@ -17,16 +18,11 @@ const store = createStore(reducer);
 const render = () =>
   root.render(
     <StrictMode>
-      <App
-        value={store.getState().counter}
-        onIncrease={() => store.dispatch(increase())}
-        onDecrease={() => store.dispatch(decrease())}
-      />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </StrictMode>
   );
 
 // 7.2 렌더링 함수 실행
 render();
-
-// 7.3 `store.subscribe()` 메소드로 리액트 컴포넌트와 연동
-store.subscribe(render);
