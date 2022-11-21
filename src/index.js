@@ -1,17 +1,12 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { legacy_createStore as createStore } from 'redux';
-import reducer from './modules';
-
 import { Provider } from 'react-redux';
+import store from './modules';
 
 import App from './App';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
-
-// 6. 스토어 생성
-const store = createStore(reducer);
 
 // 7. 리덕스 스토어와 리액트 컴포넌트 연동
 // 7.1 렌더링 함수 정의
