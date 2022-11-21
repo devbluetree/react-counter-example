@@ -180,3 +180,59 @@ const store = createStore(reducer);
 ```
 
 - `store.getState()`에서 리듀서를 정확히 지정해야 상태를 가져올 수 있다.
+
+## 04-provider
+
+```
+npm install react-redux
+```
+
+### 1. 하위 컴포넌트로 props 전달 대신에 Provider 사용
+
+```js
+import { Provider } from 'react-redux';
+```
+
+```jsx
+  <Provider store={store}>
+    <App />
+  </Provider>
+```
+
+```js
+store.subscribe(render);
+```
+
+- 삭제
+- Provider 컴포넌트로 감싸줬으므로 `store.subscribe` 메소드 호출하지 않는다.
+
+```js
+const App = () => {
+```
+
+- `App` 컴포넌트에 굳이 props 넘겨줄 필요 없으므로 props 아규먼트 선언을 삭제한다.
+
+### 2. `useSelector` 훅
+
+```js
+import { useDispatch, useSelector } from 'react-redux';
+
+const counter = useSelector((state) => state.counter);
+```
+
+- 상태가 객체가 아닌 원시 타입이므로 destructuring 하지 않는다. `const { counter } = ...`
+
+### 3. `useDispatch` 훅
+
+```js
+import { useDispatch, useSelector } from 'react-redux';
+import { increase, decrease } from './modules/counter';
+
+const dispatch = useDispatch();
+```
+
+```jsx
+<button onClick={() => dispatch(decrease())}>-</button>
+```
+
+- 액션 반환 함수는 필요에 모듈에서 그 때 그 때 import한다.
