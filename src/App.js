@@ -5,7 +5,7 @@ const App = () => {
   // 1. useState Hook
   const [value, setValue] = useState(0);
 
-  // 2. 이벤트 핸들러 정의
+  // 2. 이벤트 핸들러 함수 정의
   const handleIncrease = () => setValue(value + 1);
   const handleDecrease = () => setValue(value - 1);
 
