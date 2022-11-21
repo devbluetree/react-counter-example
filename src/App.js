@@ -6,8 +6,8 @@ const App = () => {
   const [value, setValue] = useState(0);
 
   // 2. 이벤트 핸들러 함수 정의
-  const handleIncrease = () => setValue(value + 1);
-  const handleDecrease = () => setValue(value - 1);
+  const handleIncrease = () => setValue((prev) => prev + 1);
+  const handleDecrease = () => setValue((prev) => prev - 1);
 
   return (
     <div>

@@ -10,12 +10,22 @@
 
 ### 이벤트 핸들러 함수 정의
 
+- 핸들러 함수에서 getter와 setter로 상태를 변경한다.
+- 수식을 전달하는 방법과 함수를 전달하는 방법 두 가지가 있다.
+
+#### 수식으로 상태 변경
+
 ```js
 const handleIncrease = () => setValue(value + 1);
 const handleDecrease = () => setValue(value - 1);
 ```
 
-- 핸들러 함수에서 getter와 setter로 상태를 변경한다.
+#### 함수식으로 상태 변경
+
+```js
+const handleIncrease = () => setValue((prev) => prev + 1);
+const handleDecrease = () => setValue((prev) => prev - 1);
+```
 
 ### 이벤트 핸들러 함수 연결
 
