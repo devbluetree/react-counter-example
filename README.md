@@ -236,3 +236,46 @@ const dispatch = useDispatch();
 ```
 
 - 액션 반환 함수는 필요에 모듈에서 그 때 그 때 import한다.
+
+## 05-redux-toolkit
+
+### 1. `configureStore`로 스토어 설정
+
+`src/modules/index.js` 파일
+
+```js
+import { combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import counter from './counter';
+
+// 리듀서 조합
+const reducer = combineReducers({
+  counter,
+});
+
+// 스토어 생성
+const store = configureStore({
+  reducer,
+});
+
+// 스토어 내보내기
+export default store;
+```
+
+- 리듀서가 아닌 스토어를 내보낸다.
+
+### 2. `createStore` 대신에 설정한 스토어 불러오기
+
+`src/index.js` 파일
+
+```js
+import { legacy_createStore as createStore } from 'redux';
+
+const store = createStore(reducer);
+```
+
+- 기존 `createStore` 함수 부분은 삭제한다.
+
+```js
+import store from './modules';
+```
