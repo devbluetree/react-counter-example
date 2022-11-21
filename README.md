@@ -139,3 +139,44 @@ const App = ({ value, onIncrease, onDecrease }) => { ... }
 - `App`의 `props`로 넘겨준다.
 - state to props: `store.getState()`
 - props to state: `store.dispatch(액션객체)`
+
+## 03-combine-reducers
+
+### 1. `combineReducers`
+
+`src/modules/index.js` 파일
+
+```js
+import { combineReducers } from 'redux';
+import counter from './counter';
+
+// 리듀서 조합
+const rootReducer = combineReducers({
+  counter,
+});
+
+export default rootReducer;
+```
+
+### 2. 개별 리듀서가 아닌 하나로 묶은 리듀서 불러오기
+
+`src/index.js` 파일
+
+```js
+import reducer from './modules';
+import { increase, decrease } from './modules/counter';
+
+const store = createStore(reducer);
+```
+
+- 스토어 생성 시 하나로 묶은 리듀서를 전달
+
+```jsx
+<App
+  value={store.getState().counter}
+  onIncrease={() => store.dispatch(increase())}
+  onDecrease={() => store.dispatch(decrease())}
+/>
+```
+
+- `store.getState()`에서 리듀서를 정확히 지정해야 상태를 가져올 수 있다.

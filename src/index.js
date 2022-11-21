@@ -1,7 +1,8 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { legacy_createStore as createStore } from 'redux';
-import reducer, { increase, decrease } from './modules/counter';
+import reducer from './modules';
+import { increase, decrease } from './modules/counter';
 
 import App from './App';
 
@@ -17,7 +18,7 @@ const render = () =>
   root.render(
     <StrictMode>
       <App
-        value={store.getState()}
+        value={store.getState().counter}
         onIncrease={() => store.dispatch(increase())}
         onDecrease={() => store.dispatch(decrease())}
       />
