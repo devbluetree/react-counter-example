@@ -8,8 +8,8 @@ import App from './App';
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
-// 7. 리덕스 스토어와 리액트 컴포넌트 연동
-// 7.1 렌더링 함수 정의
+// 6. 리덕스 스토어와 리액트 컴포넌트 연동
+// 6.1 렌더링 함수 정의
 const render = () =>
   root.render(
     <StrictMode>
@@ -19,5 +19,5 @@ const render = () =>
     </StrictMode>
   );
 
-// 7.2 렌더링 함수 실행
+// 6.2 렌더링 함수 실행
 render();

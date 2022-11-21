@@ -1,26 +1,25 @@
-// 1. 액션 타입 정의
-const INCREASE = 'counter/INCREASE';
-const DECREASE = 'counter/DECREASE';
+import { createSlice } from '@reduxjs/toolkit';
 
-// 2. 액션 함수 정의
-const increase = () => ({ type: INCREASE });
-const decrease = () => ({ type: DECREASE });
+const counterSlice = createSlice({
+  // 1. 슬라이스 이름
+  name: 'counter',
 
-// 3. 초기 상태 정의 (원시기본타입)
-const initialState = 0;
+  // 2. 초기 상태 정의
+  initialState: {
+    counter: 0,
+  },
 
-// 4. 리듀서 정의
-const counter = (state = initialState, action) => {
-  switch (action.type) {
-    case INCREASE:
-      return state + 1;
-    case DECREASE:
-      return state - 1;
-    default:
-      return state;
-  }
-};
+  // 3. 리듀서의 액션 정의
+  reducers: {
+    increase: (state, action) => {
+      state.counter += 1;
+    },
+    decrease: (state, action) => {
+      state.counter -= 1;
+    },
+  },
+});
 
-// 5. 모듈 내보내기
-export default counter;
-export { increase, decrease };
+// 4. 모듈 내보내기 (리듀서 및 액션 반환 함수)
+export default counterSlice.reducer;
+export const { increase, decrease } = counterSlice.actions;
